@@ -11,6 +11,7 @@ from api.serializers import UserRequestHistorySerializer, UserSerializer
 from django.db.models import Count
 import requests
 from .rabbitmq import StockRpcClient
+from datetime import datetime
 
 stock_service = StockRpcClient()
 
@@ -63,7 +64,7 @@ class StockView(APIView):
     def save_stock_data(self, stockData, user):
         userRequestHistory = UserRequestHistory()
         userRequestHistory.user = user
-        userRequestHistory.date = stockData["Date"] + "T" + stockData["Time"] + "Z"
+        userRequestHistory.date = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
         userRequestHistory.name = stockData["Name"]
         userRequestHistory.symbol = stockData["Symbol"]
         userRequestHistory.open = stockData["Open"]
