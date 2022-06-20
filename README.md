@@ -45,7 +45,7 @@ password: `guest`
 * Create a virtualenv:
 ```
   python -m venv virtualenv
-  virtualenv/scripts/activate
+  ./virtualenv/bin/activate
 ```
 * Install dependencies:
 ```
